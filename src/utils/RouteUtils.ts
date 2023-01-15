@@ -1,5 +1,3 @@
-import { LoggerInstance, StyleOption } from "./Logger";
-
 export interface RouteInterface {
   [propName: string]: Route;
 }
@@ -30,10 +28,7 @@ export class RouteManager {
 
   goTo(routeName: string) {
     if (!this.avalibleRoutes[routeName]) {
-      LoggerInstance.log(
-        `No matches for route "${routeName}" were found!`,
-        StyleOption.warning
-      );
+      console.error(`No such route: ${routeName}`);
 
       return;
     }
