@@ -51,7 +51,7 @@ export const init = () => {
 };
 
 export const clear = () => {
-  game.stop();
+  game?.stop();
   game = new Game();
   document.getElementById("background")!.style.background = ``;
   window.postMessage({
