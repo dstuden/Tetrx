@@ -1,0 +1,138 @@
+@import "./main.less";
+
+#play {
+  height: 100vh;
+  // overflow: hidden;
+
+  #background {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    transition: background 0.3s ease;
+    width: 100%;
+    min-height: auto;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: top left;
+    background-size: contain;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @keyframes show-menu {
+    0% {
+      opacity: 40;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 100;
+      transform: scale(1);
+    }
+  }
+
+  .menu {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    animation: show-menu 0.3s ease;
+
+    h2 {
+      color: @foreground;
+    }
+  }
+
+  #game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    --scale: 0.8;
+    @scale: var(--scale);
+
+    @keyframes horizontal-shaking {
+      0% {
+        transform: translateX(0) scale(@scale);
+      }
+      25% {
+        transform: translateX(3px) scale(@scale);
+      }
+      50% {
+        transform: translateX(-3px) scale(@scale);
+      }
+      75% {
+        transform: translateX(3px) scale(@scale);
+      }
+      100% {
+        transform: translateX(0) scale(@scale);
+      }
+    }
+
+    @keyframes vertical-shaking {
+      0% {
+        transform: translateY(0) scale(@scale);
+      }
+      50% {
+        transform: translateY(-3px) scale(@scale);
+      }
+      100% {
+        transform: translateY(0) scale(@scale);
+      }
+    }
+
+    canvas {
+      @media screen and (max-height: 800px) {
+        --scale: 0.6;
+      }
+      @media screen and (max-height: 600px) {
+        --scale: 0.4;
+      }
+
+      transform: scale(@scale);
+    }
+
+    #canvas {
+      border: 10px solid @background-secondary;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px @foreground;
+
+      &.shake-x {
+        animation: horizontal-shaking ease 0.3s;
+      }
+
+      &.shake-y {
+        animation: vertical-shaking ease 0.2s;
+      }
+    }
+
+    #canvas-next {
+      border-radius: 10px;
+      border: 10px solid @background-secondary;
+      place-self: flex-start;
+      margin-top: 10vh;
+    }
+
+    .stats {
+      background: @background;
+      border: 10px solid @background-secondary;
+      border-radius: 10px;
+      padding: 0.5em;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      width: 10em;
+      place-self: flex-start;
+      align-items: center;
+      margin-top: 10vh;
+    }
+  }
+}

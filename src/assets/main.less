@@ -1,0 +1,182 @@
+@import (css)
+  url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+#app.dark {
+  --background: #14131c;
+  --background-secondary: #202025;
+  --foreground: #ffffff;
+}
+
+#app.light {
+  --background: #f0f0f0;
+  --background-secondary: #fffeff;
+  --foreground: #14131c;
+}
+
+:root {
+  --accent: #f84e6a;
+  --gradient: linear-gradient(45deg, #5767ff, #ff0c37);
+}
+
+@background: var(--background);
+@background-secondary: var(--background-secondary);
+@foreground: var(--foreground);
+@accent: var(--accent);
+@gradient: var(--gradient);
+
+html,
+body,
+#app {
+  width: 100%;
+  min-height: 100vh;
+  background: @background;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Kanit";
+  font-weight: 400;
+  color: @foreground;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#app.light header .dark {
+  display: none;
+}
+#app.dark header .light {
+  display: none;
+}
+
+#themeSwitcher {
+  display: flex;
+}
+
+#themeSwitcher img {
+  width: 1.8em;
+  height: 1.8em;
+  align-self: center;
+}
+
+header {
+  position: absolute;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: @background-secondary;
+  user-select: none;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+
+  router {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2vw;
+  }
+
+  .link {
+    font-size: clamp(16px, 2vw, 25px);
+  }
+}
+
+.link {
+  font-weight: 500;
+  transition: 0.3s ease all;
+}
+
+.link:hover {
+  cursor: pointer;
+  filter: brightness(80%);
+}
+
+input {
+  outline: none;
+  padding: 0.5em 0.5em;
+  border: @accent 2px solid;
+  border-radius: 10px;
+  background: @background-secondary;
+  color: @foreground;
+  font-size: 15px;
+}
+
+button {
+  outline: none;
+  padding: 0.5em 1em;
+  border: @accent 2px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  background: @background-secondary;
+  color: @foreground;
+  transition: 0.3s ease all;
+  font-size: 17px;
+  height: 47px;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+h1 {
+  font-size: 10vmin;
+  font-weight: 600;
+}
+
+.home-button {
+  position: absolute;
+  margin: 1em 1em;
+  z-index: 100;
+}
+
+h2 {
+  font-size: 5vmin;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 2.5vmin;
+  font-weight: 500;
+}
+
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 1em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  border-radius: 10px;
+  background: @accent;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: @background-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: @accent;
+  border-radius: 10px;
+}

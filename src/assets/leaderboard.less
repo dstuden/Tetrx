@@ -1,0 +1,45 @@
+@import "./main.less";
+
+#leaderboard {
+  padding-top: 20vmin;
+
+  row-gap: 2em;
+
+  #scoreboard {
+    border: 2px solid @accent;
+    max-height: 50vh;
+    overflow: auto;
+    display: block;
+    color: @foreground;
+    border-radius: 10px;
+    border-spacing: 0;
+    text-align: left;
+    width: 30vw;
+
+    tr {
+      width: auto;
+    }
+
+    th {
+      padding: 5px 1em;
+      background: @background-secondary;
+      top: 0;
+      position: sticky;
+    }
+
+    td {
+      padding: 0.5em 1em;
+    }
+
+    td.user {
+      width: auto;
+    }
+
+    th.score {
+      width: 100%;
+    }
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
