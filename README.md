@@ -1,7 +1,4 @@
 # Tetrx
-
 ## A ~~simple~~ scuffed Tetris implementation
+[Demo](https://tetrx.netlify.app/)
 
-<br>
-
-### <a src="https://majestic-cactus-565610.netlify.app/">Demo</a>
