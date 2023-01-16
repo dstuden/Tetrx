@@ -1,4 +1,5 @@
 import { getConfig } from "./ConfigUtils";
+import { clickSound, moveSound } from "./SoundManager";
 import { Tetrominos } from "./Tetrominos";
 
 // returns sprite position on spritesheet
@@ -150,6 +151,7 @@ export class Tetromino {
               !this.rotating
             ) {
               this.falling = false;
+              clickSound.play();
             }
             return true;
           }
@@ -172,6 +174,7 @@ export class Tetromino {
     setTimeout(() => {
       document.getElementById("canvas")?.classList.remove("shake-y");
     }, 300);
+    clickSound.play();
   }
 
   private handleInput(evt: KeyboardEvent) {
@@ -194,11 +197,13 @@ export class Tetromino {
         this.newPosition.x--;
         if (this.collides(this.newState, this.newPosition))
           this.newPosition.x++;
+        else moveSound.play();
         break;
       case getConfig().keys.right:
         this.newPosition.x++;
         if (this.collides(this.newState, this.newPosition))
           this.newPosition.x--;
+        else moveSound.play();
         break;
       default:
         break;

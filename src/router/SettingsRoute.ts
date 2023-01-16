@@ -4,7 +4,7 @@ import {
   getConfig,
   saveConfig,
 } from "../utils/ConfigUtils";
-import { clickSound } from "../utils/SoundManager";
+import { clickSound, moveSound } from "../utils/SoundManager";
 import { initThemeSwitcher } from "../utils/ThemeSwitcher";
 
 let config: Config;
@@ -131,6 +131,7 @@ export const init = () => {
     config.sound.interact = parseInt(interactVolume as any) / 100;
 
     clickSound.volume(config.sound.interact);
+    moveSound.volume(config.sound.interact);
     window.postMessage({
       type: "LOBBY_MUSIC_VOLUME",
     });

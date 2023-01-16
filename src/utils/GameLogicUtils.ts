@@ -115,11 +115,9 @@ export class Game {
   };
 
   stop = () => {
+    playlist?.stop();
+
     this.isActive = false;
-    setTimeout(() => {
-      playlist?.stop();
-    }, 1000);
-    playlist?.fade(getConfig().sound.music, 0, 1000);
   };
 
   private update = () => {

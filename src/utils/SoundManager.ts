@@ -4,9 +4,15 @@ import { getConfig } from "./ConfigUtils";
 export const clickSound = new Howl({
   src: ["https://s3.eu-central-1.wasabisys.com/school-random/click.opus"],
 });
-
 clickSound.rate(1.4);
 clickSound.volume(getConfig().sound.interact);
+
+export const moveSound = new Howl({
+  src: ["https://s3.eu-central-1.wasabisys.com/school-random/move.mp3"],
+});
+
+moveSound.rate(1.4);
+moveSound.volume(getConfig().sound.interact);
 
 export const library = [
   "https://s3.eu-central-1.wasabisys.com/school-random/unravel.mp3",
