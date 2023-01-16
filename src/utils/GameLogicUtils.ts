@@ -12,6 +12,10 @@ const scores = {
   4: 1200,
 };
 
+function shuffle() {
+  return Math.random() > 0.5 ? -1 : 1;
+}
+
 export class Game {
   private activeTetromino: Tetromino | null = null;
   private nextTetromino: TetrominoName | string = "";
@@ -37,17 +41,20 @@ export class Game {
 
   private oldTime = Date.now();
 
-  private possibleTetrominos: TetrominoName[] = Object.keys(Tetrominos) as any;
+  private tetriminoBag: TetrominoName[] = [];
 
   private getNewTetromino() {
-    let tetromino: TetrominoName;
-    do {
-      tetromino =
-        this.possibleTetrominos[
-          Math.floor(Math.random() * this.possibleTetrominos.length)
-        ];
-    } while (tetromino === this.activeTetromino?.name);
-    return tetromino;
+    if (this.tetriminoBag.length == 0) {
+      this.tetriminoBag = Object.keys(Tetrominos) as TetrominoName[];
+
+      for (let i = 0; i < 3; i++) {
+        this.tetriminoBag.sort(shuffle);
+      }
+    }
+    const randIndex = Math.round(
+      (this.tetriminoBag.length - 1) * Math.random()
+    );
+    return this.tetriminoBag.splice(randIndex, 1)[0];
   }
 
   private drawBlock = (
